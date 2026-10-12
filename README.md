@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cinex
 
-## Getting Started
+**Cinex** is a cinema-themed web application built with Next.js, TypeScript, Tailwind CSS, the TMDB API, and Supabase. It combines movie and TV-series discovery with a community where users can share posts.
 
-First, run the development server:
+## Features
+
+### Movies and TV series
+- Trending movies and TV series on the home page.
+- Separate browsing pages for movies and series.
+- Dynamic detail pages using TMDB data.
+- Responsive cards, navigation, and a dark neon-themed interface.
+
+### Authentication and community
+- User registration and login with Supabase Authentication.
+- Community feed and individual post pages.
+- Create, edit, and delete posts.
+- Optional post images uploaded to Supabase Storage.
+- Keep, replace, or remove an existing post image when editing.
+- Author-only post editing and deletion, enforced with Supabase Row Level Security policies.
+
+## Tech stack
+
+| Technology | Purpose |
+| --- | --- |
+| Next.js (App Router) | Routing, pages, and server actions |
+| React & TypeScript | Component-based, typed frontend |
+| Tailwind CSS | Responsive styling |
+| TMDB API | Movie and TV-series data |
+| Supabase | Authentication, PostgreSQL database, and Storage |
+| React Hook Form & Zod | Form handling and validation |
+| TanStack Query | Handling form mutations |
+
+## Pages
+
+- **Home:** Trending movie and TV content.
+- **Movies / Series:** Dedicated content lists.
+- **Movie / Series details:** Dynamic routes for individual titles.
+- **Login / Sign up:** User authentication.
+- **Community:** Browse posts and open individual post pages.
+- **Create post:** Publish a post with optional image.
+- **Edit post:** Change a post's title, content, or image.
+
+## How it works
+
+The app retrieves movie and TV data from the **TMDB API**. **Supabase** handles authentication and stores community posts in PostgreSQL. Images are uploaded to a public Supabase Storage bucket (`post-images`), and the corresponding public URLs are saved with posts. Server actions handle post changes, with validation and database access policies.
+
+## Getting started
+
+### Prerequisites
+
+- Node.js and npm
+- TMDB API access token
+- Supabase project configured with the tables, authentication, storage bucket, and policies used by the app
+
+### Installation
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd cinex
+npm install
+```
+
+Create a `.env.local` file in the project root. Configure the TMDB token and Supabase environment variables used by your client files, for example:
+
+```env
+TMDB_ACCESS_TOKEN=your_tmdb_access_token
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_public_key
+```
+
+**Note:** Verify the exact Supabase environment variable names in your own `serverClient.ts` and `browserClient.ts`; they may differ. Never commit `.env.local` or private keys.
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Supabase setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application uses `Posts` and `Users` tables, Supabase Authentication, and a public Storage bucket named `post-images` for JPEG, PNG, and WebP uploads. Appropriate Row Level Security policies must be configured for reading, creating, updating, and deleting posts, and for uploading images. A fresh Supabase project requires this configuration before the community features work.
 
-## Learn More
+## Skills demonstrated
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js App Router and dynamic routing
+- REST API integration
+- Supabase authentication, database, and file storage
+- CRUD operations and access control
+- Reusable React components and validated forms
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Credits
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Movie and TV-series data is provided by [TMDB](https://www.themoviedb.org/). This project uses the TMDB API but is not endorsed or certified by TMDB.
