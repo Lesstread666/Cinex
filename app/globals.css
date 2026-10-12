@@ -1,26 +1,286 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-background: #05070d;
+  --color-surface: #0b1120;
+  --color-surface-light: #111827;
+
+  --color-neon-purple: #7c3aed;
+  --color-neon-delete-red: #b91c1c;
+  --color-neon-edit-orange: #c2410c;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-background text-text-primary min-h-screen;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+
+  .header {
+    @apply bg-surface px-8 py-6 flex items-center justify-between;
+  }
+
+  .header-title {
+    @apply text-3xl font-bold text-neon-purple;
+    font-family: var(--font-orbitron);
+    letter-spacing: 0.12em;
+    text-shadow:
+      0 0 8px var(--color-neon-purple),
+      0 0 18px var(--color-neon-purple);
+  }
+
+  .header-subtitle {
+    @apply text-2xl text-text-secondary mt-1;
+  }
+
+  .auth-container {
+    @apply flex items-center gap-4;
+  }
+
+  .auth-link {
+    @apply px-4 py-2 rounded-md border border-neon-purple text-neon-purple transition-all duration-300;
+  }
+
+  .auth-link:hover {
+    @apply border-neon-purple shadow-lg shadow-neon-purple/40;
+  }
+
+  .navigation {
+    @apply bg-surface-light px-8 py-4 flex justify-center gap-24;
+  }
+
+  .nav-link {
+    @apply text-neon-purple text-2xl font-medium transition-all duration-200;
+  }
+
+  .nav-link:hover,
+  .nav-link-active {
+    text-shadow:
+      0 0 8px var(--color-neon-purple),
+      0 0 16px var(--color-neon-purple);
+  }
+
+  /* Movie / Series container */
+  .media-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-8 py-8;
+  }
+
+  /* Movie / Series card */
+
+  .media-card {
+    @apply bg-surface-light rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-neon-purple/30 hover:-translate-y-1;
+  }
+
+  .media-card-title {
+    @apply text-lg font-semibold text-text-primary mb-2;
+  }
+
+  .media-card-image {
+    @apply w-full aspect-2/3 object-cover;
+  }
+
+  .media-card-content {
+    @apply p-4;
+  }
+
+  .media-card-info {
+    @apply text-sm text-text-secondary mt-1;
+  }
+
+  /* Active chosen Movie/Series card */
+  /* Single movie / series page */
+
+  .details-container {
+    @apply max-w-5xl mx-auto my-10 p-8 flex justify-center;
+  }
+
+  .details-card {
+    @apply bg-surface-light rounded-lg overflow-hidden flex gap-8 p-6;
+  }
+
+  .details-image {
+    @apply w-80 rounded-lg object-cover;
+  }
+
+  .details-content {
+    @apply flex flex-col gap-4 p-4 bg-surface;
+  }
+
+  .details-title {
+    @apply text-3xl text-center font-bold text-neon-purple;
+  }
+
+  .details-overview {
+    @apply text-text-primary text-base leading-7;
+  }
+
+  .details-info {
+    @apply text-text-secondary;
+  }
+
+  /* Community posts */
+
+  .community-container {
+    @apply w-full max-w-6xl mx-auto px-8 py-10 grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  .community-card {
+    @apply w-full min-h-40 bg-surface-light border border-neon-purple/30 rounded-lg px-8 py-6 transition-all duration-300 flex flex-col justify-between;
+  }
+
+  .community-card:hover {
+    @apply border-neon-purple shadow-lg shadow-neon-purple/20 -translate-y-1;
+  }
+
+  .community-card-title {
+    @apply text-2xl font-semibold text-text-primary;
+  }
+
+  .community-card-author {
+    @apply text-sm text-neon-purple text-right mt-8;
+  }
+
+  /* Single Community Post */
+
+  .single-post-container {
+    @apply w-full max-w-7xl mx-auto px-6 md:px-10 py-10;
+  }
+
+  .single-post {
+    @apply w-full min-h-80 bg-surface-light border border-neon-purple/30 rounded-lg p-6 md:p-10;
+  }
+
+  .single-post-title {
+    @apply text-3xl font-bold text-neon-purple text-center mb-10;
+  }
+
+  .single-post-text {
+    @apply text-text-primary text-lg leading-8 whitespace-pre-line;
+  }
+
+  .single-post-author {
+    @apply text-lg text-neon-purple text-right mt-10;
+  }
+
+  .single-post-image {
+    @apply block w-full max-w-md max-h-80 mx-auto my-6 object-contain;
+  }
+
+  /* FORMS: Log in / Sign up / Create post / Edit post */
+
+  .form-page {
+    @apply flex-1 flex flex-col items-center justify-center px-6 py-12;
+  }
+
+  .form-container {
+    @apply w-full max-w-md bg-surface-light border border-neon-purple/30 rounded-lg p-8 shadow-lg shadow-neon-purple/10;
+  }
+
+  .form-title {
+    @apply text-3xl font-bold text-neon-purple text-center mb-8;
+  }
+
+  .form {
+    @apply flex flex-col gap-2;
+  }
+
+  .form-label {
+    @apply text-sm text-text-secondary mt-3;
+  }
+
+  .form-input {
+    @apply w-full bg-surface border border-neon-purple/30 rounded-md px-4 py-3 text-text-primary outline-none transition-all duration-200;
+  }
+
+  .form-input:focus {
+    @apply border-neon-purple shadow-md shadow-neon-purple/20;
+  }
+
+  .form-input::placeholder {
+    @apply text-text-secondary;
+  }
+
+  .form-button {
+    @apply w-full mt-6 px-4 py-3 rounded-md bg-neon-purple text-white font-semibold transition-all duration-300 cursor-pointer;
+  }
+
+  .form-button:hover {
+    @apply shadow-lg shadow-neon-purple/40;
+  }
+
+  .form-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .form-footer {
+    @apply text-sm text-text-secondary text-center mt-6;
+  }
+
+  .form-link {
+    @apply text-neon-purple ml-1 transition-all duration-200;
+  }
+
+  .form-link:hover {
+    text-shadow:
+      0 0 8px var(--color-neon-purple),
+      0 0 16px var(--color-neon-purple);
+  }
+
+  /* Post action buttons */
+
+  .post-actions {
+    @apply flex flex-wrap justify-between items-center gap-4 mt-8;
+  }
+
+  /* Delete Post button */
+
+  .delete-button {
+    @apply px-4 py-2 rounded-md border border-neon-delete-red text-neon-delete-red text-lg transition-all duration-300 cursor-pointer;
+  }
+
+  .delete-button:hover {
+    @apply border-neon-delete-red shadow-lg shadow-neon-delete-red/40;
+  }
+
+  /* Edit Post button */
+  .edit-button {
+    @apply px-4 py-2 rounded-md border border-neon-edit-orange text-neon-edit-orange text-lg transition-all duration-300 cursor-pointer;
+  }
+
+  .edit-button:hover {
+    @apply border-neon-edit-orange shadow-lg shadow-neon-edit-orange/40;
+  }
+
+  /* Edit image */
+  .edit-post-image {
+    @apply w-full max-w-60 max-h-48 mx-auto my-4 rounded-lg object-contain;
+  }
+
+  .remove-post-image {
+    @apply inline-flex items-center gap-2 text-sm text-gray-400 cursor-pointer m-3;
+  }
+
+  .remove-post-image input {
+    @apply w-4 h-4 shrink-0 cursor-pointer accent-purple-600;
+  }
+
+  .remove-post-image:hover {
+    @apply text-white;
+  }
+
+  /* Choose file */
+  input[type="file"]::file-selector-button {
+    color: rgb(65, 11, 165);
+    margin-right: 16px;
+  }
+
 }
