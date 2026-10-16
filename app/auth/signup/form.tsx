@@ -1,8 +1,8 @@
 'use client'
 
-import { signUpSchema } from "@/app/actions/schemas"
-import { SignUp } from "@/app/actions/signup-action"
-import ErrorMessage from "@/app/components/ErrorMessage"
+import { signUpSchema } from "@/actions/schemas"
+import { SignUp } from "@/actions/signup-action"
+import ErrorMessage from "@/components/ErrorMessage"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"

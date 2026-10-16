@@ -16,3 +16,7 @@ export const postSchema = z.object({
     content: z.string().optional(),
     image: z.instanceof(FormData).optional()
 })
+
+export const commentSchema = z.object({
+    content: z.string().min(3, "Your comment must be at least 3 characters long")
+})

@@ -1,4 +1,4 @@
-import Trends from "../components/Trends";
+import Trends from "../../components/Trends";
 import { TrendType } from "../types/type";
 
 export default async function Home() {

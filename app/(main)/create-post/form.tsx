@@ -1,7 +1,7 @@
 'use client'
-import { CreatePostAction } from "@/app/actions/create-post-action"
-import { postSchema } from "@/app/actions/schemas"
-import ErrorMessage from "@/app/components/ErrorMessage"
+import { CreatePostAction } from "@/actions/create-post-action"
+import { postSchema } from "@/actions/schemas"
+import ErrorMessage from "@/components/ErrorMessage"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"

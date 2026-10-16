@@ -1,4 +1,4 @@
-import { CommunityPostType } from "@/app/lib/supabase/queries"
+import { CommunityPostType } from "@/lib/supabase/queries"
 import Link from "next/link"
 
 const CommunityPosts = ({ posts }: { posts: CommunityPostType }) => {

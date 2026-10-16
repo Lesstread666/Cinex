@@ -1,4 +1,4 @@
-import Movies from "@/app/components/Movies"
+import Movies from "@/components/Movies"
 
 
 const MoviesPage = async () => {

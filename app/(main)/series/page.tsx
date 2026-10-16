@@ -1,4 +1,4 @@
-import Series from "@/app/components/Series"
+import Series from "@/components/Series"
 
 const SeriesPage = async () => {
 

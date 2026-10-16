@@ -1,8 +1,8 @@
 'use client'
-import { EditPostAction } from "@/app/actions/edit-post-action";
-import { postSchema } from "@/app/actions/schemas";
-import ErrorMessage from "@/app/components/ErrorMessage";
-import { Tables } from "@/app/lib/supabase/database.types";
+import { EditPostAction } from "@/actions/edit-post-action";
+import { postSchema } from "@/actions/schemas";
+import ErrorMessage from "@/components/ErrorMessage";
+import { Tables } from "@/lib/supabase/database.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";

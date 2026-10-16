@@ -16,6 +16,17 @@ export const getSingleCommunityPost = async (slug: string) => {
         .single()
 }
 
+export const getCommunityPostComments = async (postid: string) => {
+    const supabase = createClient()
+    const { data, error } = await supabase.from("Comments")
+        .select("id, content, userid(id, username)")
+        .eq("postid", postid)
+        .order('created_at', { ascending: false })
+
+    if (error) throw Error
+    return data
+}
+
 export type CommunityPostType = QueryData<ReturnType<typeof getCommunityPosts>>;
 
 export type SingleCommunityPostType = QueryData<ReturnType<typeof getSingleCommunityPost>>;

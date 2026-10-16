@@ -1,5 +1,5 @@
-import { Logout } from "@/app/actions/logout-action"
-import { createClient } from "@/app/lib/supabase/serverClient"
+import { Logout } from "@/actions/logout-action"
+import { createClient } from "@/lib/supabase/serverClient"
 import Link from "next/link"
 
 const Header = async () => {

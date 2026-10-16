@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
-import Navigation from "../components/Navigation"
-import Header from "../components/Header"
+import Navigation from "../../components/Navigation"
+import Header from "../../components/Header"
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
     return (

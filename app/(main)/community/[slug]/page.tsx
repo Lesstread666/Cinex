@@ -1,7 +1,9 @@
-import DeletePostButton from "@/app/components/DeletePostButton"
-import { getSingleCommunityPost } from "@/app/lib/supabase/queries"
-import { createClient } from "@/app/lib/supabase/serverClient"
+import CommentCard from "@/components/CommentCard"
+import DeletePostButton from "@/components/DeletePostButton"
+import { getSingleCommunityPost } from "@/lib/supabase/queries"
+import { createClient } from "@/lib/supabase/serverClient"
 import Link from "next/link"
+import AddComment from "./add-comment/form"
 
 
 const CommunityPostPage = async ({ params }: { params: { slug: string } }) => {
@@ -40,20 +42,18 @@ const CommunityPostPage = async ({ params }: { params: { slug: string } }) => {
                     {isAuthor && (
                         <div className="post-actions">
 
-                            <Link
-                                className="edit-button"
-                                href={`/community/${slug}/edit`}
-                            >
+                            <Link className="edit-button" href={`/community/${slug}/edit-post`}>
                                 Edit Post
                             </Link>
 
                             <DeletePostButton id={data.id} />
-
                         </div>
                     )}
+                    <CommentCard postid={data.id} postslug={slug} isAuthor={isAuthor} userid={user ? user.id : null}/>
+                    {user && <AddComment postid={data.id} />}
                 </div>
             }
-        </div>
+        </div>      
     )
 }
 

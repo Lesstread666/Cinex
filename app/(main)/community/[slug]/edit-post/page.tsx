@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
-import { createClient } from "@/app/lib/supabase/serverClient"
-import { getSingleCommunityPost } from "@/app/lib/supabase/queries"
+import { createClient } from "@/lib/supabase/serverClient"
+import { getSingleCommunityPost } from "@/lib/supabase/queries"
 import EditPageForm from "./form"
 
 
@@ -22,7 +22,7 @@ const EditPostPage = async ({ params }: { params: { slug: string } }) => {
 
                 <div className="form-container">
                     <h1 className="form-title">Edit: {data.title}</h1>
-                    <EditPageForm initialValues={{ title: data.title, content: data.content, image: data.image}} postId={data.id} />
+                    <EditPageForm initialValues={{ title: data.title, content: data.content, image: data.image }} postId={data.id} />
                 </div>
             }
         </div>

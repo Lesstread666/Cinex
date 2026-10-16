@@ -1,5 +1,5 @@
 'use client'
-import { DeletePostAction } from "@/app/actions/delete-post-action"
+import { DeletePostAction } from "@/actions/delete-post-action"
 import { useMutation } from "@tanstack/react-query"
 import { toast } from "sonner"
 

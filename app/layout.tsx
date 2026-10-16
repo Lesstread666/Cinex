@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
-import Navigation from "./components/Navigation";
-import Header from "./components/Header";
+import Navigation from "../components/Navigation";
+import Header from "../components/Header";
 import { QueryClientProvider } from "@/providers/queryProvider";
 
 

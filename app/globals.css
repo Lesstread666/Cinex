@@ -209,6 +209,18 @@
     @apply text-text-secondary;
   }
 
+  .form-textarea {
+    @apply w-full min-h-28 bg-surface border border-neon-purple/30 rounded-md px-4 py-3 text-text-primary outline-none resize-y transition-all duration-200;
+  }
+
+  .form-textarea:focus {
+    @apply border-neon-purple shadow-md shadow-neon-purple/20;
+  }
+
+  .form-textarea::placeholder {
+    @apply text-text-secondary;
+  }
+
   .form-button {
     @apply w-full mt-6 px-4 py-3 rounded-md bg-neon-purple text-white font-semibold transition-all duration-300 cursor-pointer;
   }
@@ -283,4 +295,43 @@
     margin-right: 16px;
   }
 
+  /* Comments */
+
+  .comments-container {
+    @apply w-full mt-10 flex flex-col gap-4;
+  }
+
+  .comments-title {
+    @apply text-2xl font-bold text-neon-purple mb-4;
+  }
+
+  .comment-card:hover {
+    @apply border-neon-purple shadow-md shadow-neon-purple/20;
+  }
+
+  .comment-card {
+    @apply bg-surface-light border border-neon-purple/30 rounded-lg p-3 transition-all duration-300;
+  }
+
+  .comment-content {
+    @apply text-text-primary text-sm leading-6 whitespace-pre-line wrap-break-word;
+  }
+
+  .comment-author {
+    @apply text-xs text-neon-purple text-right mt-2;
+  }
+
+  .comments-empty {
+    @apply text-text-secondary text-center py-6;
+  }
+
+  /* Delete Comment button */
+
+  .delete-comment-button {
+    @apply px-3 py-1 rounded-md border border-neon-delete-red text-neon-delete-red text-sm transition-all duration-300 cursor-pointer;
+  }
+
+  .delete-comment-button:hover {
+    @apply shadow-md shadow-neon-delete-red/30;
+  }
 }
