@@ -30,7 +30,7 @@ export const getCommunityPostComments = async (postid: string) => {
     const supabase = createClient()
     const { data, error } = await supabase
         .from("Comments")
-        .select("id, content, userid(id, username)")
+        .select("id, content, parentid, userid(id, username)")
         .eq("postid", postid)
         .order('created_at', { ascending: false })
 

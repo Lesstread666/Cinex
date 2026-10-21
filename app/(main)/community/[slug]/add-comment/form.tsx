@@ -8,7 +8,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
-const AddComment = ({ postid }: { postid: string }) => {
+const AddComment = ({ postid, parentid }: { postid: string, parentid?: string }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: zodResolver(commentSchema)
@@ -26,7 +26,7 @@ const AddComment = ({ postid }: { postid: string }) => {
     })
 
     return (
-        <form onSubmit={handleSubmit(values => mutate({ commentdata: { content: values.content }, postid }))}
+        <form onSubmit={handleSubmit(values => mutate({ commentdata: { content: values.content }, postid, parentid }))}
             className="form">
 
             <label className="form-label">Add content</label>
@@ -34,7 +34,7 @@ const AddComment = ({ postid }: { postid: string }) => {
             {errors.content && <ErrorMessage error={errors.content.message!} />}
 
             <button className="form-button" disabled={isPending}>
-                {isPending ? "Adding..." : "Add Comment"}
+                {isPending ? "Adding..." : parentid ? "Reply" : "Add Comment"}
             </button>
             {error && <ErrorMessage error={error.message} />}
         </form>
