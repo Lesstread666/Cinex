@@ -20,7 +20,7 @@ const Navigation = () => {
                 href="/series">
                 Series
             </Link>
-            <Link className={`nav-link ${pathname === "/community" ? "nav-link-active" : ""}`}
+            <Link className={`nav-link ${pathname.startsWith("/community") ? "nav-link-active" : ""}`}
                 href="/community">
                 Community
             </Link>

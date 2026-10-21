@@ -35,9 +35,15 @@ const CommunityPostPage = async ({ params }: { params: { slug: string } }) => {
                         </p>
                     )}
 
-                    <p className="single-post-author">
-                        {data.author.username}
-                    </p>
+                    <div className="single-post-info">
+                        <p className="single-post-category">
+                            {data.category === "movies" ? "Movies" : "TV Series"}
+                        </p>
+
+                        <p className="single-post-author">
+                            {data.author.username}
+                        </p>
+                    </div>
 
                     {isAuthor && (
                         <div className="post-actions">
@@ -49,11 +55,11 @@ const CommunityPostPage = async ({ params }: { params: { slug: string } }) => {
                             <DeletePostButton id={data.id} />
                         </div>
                     )}
-                    <CommentCard postid={data.id} postslug={slug} isAuthor={isAuthor} userid={user ? user.id : null}/>
+                    <CommentCard postid={data.id} postslug={slug} isAuthor={isAuthor} userid={user ? user.id : null} />
                     {user && <AddComment postid={data.id} />}
                 </div>
             }
-        </div>      
+        </div>
     )
 }
 

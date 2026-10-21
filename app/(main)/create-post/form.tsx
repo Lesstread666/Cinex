@@ -33,7 +33,8 @@ const CreatePostForm = () => {
                 mutate({
                     title: values.title,
                     content: values.content,
-                    image: imageForm
+                    image: imageForm,
+                    category: values.category
                 })
             })}>
 
@@ -44,6 +45,15 @@ const CreatePostForm = () => {
             <label className="form-label">Add a content</label>
             <input className="form-input" {...register("content")} />
             {errors.content && <ErrorMessage error={errors.content.message!} />}
+
+            <label className="form-label">Choose a category</label>
+
+            <select className="form-input" defaultValue="" {...register("category")}>
+                <option value="" disabled>Choose category</option>
+                <option value="movies">Movies</option>
+                <option value="series">TV Series</option>
+            </select>
+            {errors.category && <ErrorMessage error={errors.category.message!} />}
 
             <label className="form-label" htmlFor="image">Add an Image (optional)</label>
             <input className="form-input" type="file" {...register("image")} />

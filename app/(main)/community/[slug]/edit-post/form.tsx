@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import z from "zod";
 
-const EditPostForm = ({ initialValues, postId }: { initialValues: Pick<Tables<"Posts">, "title" | "content" | "image">, postId: string }) => {
+const EditPostForm = ({ initialValues, postId }: { initialValues: Pick<Tables<"Posts">, "title" | "content" | "image" | "category">, postId: string }) => {
 
     const postImageSchema = postSchema.omit({ image: true })
         .extend({ image: z.unknown().transform(value => { return value as FileList }).optional() })
@@ -18,7 +18,10 @@ const EditPostForm = ({ initialValues, postId }: { initialValues: Pick<Tables<"P
         resolver: zodResolver(postImageSchema),
         defaultValues: {
             title: initialValues.title,
-            content: initialValues.content || undefined
+            content: initialValues.content || undefined,
+            category: initialValues.category === "movies" || initialValues.category === "series"
+                ? initialValues.category
+                : undefined
         }
     })
 
@@ -39,7 +42,8 @@ const EditPostForm = ({ initialValues, postId }: { initialValues: Pick<Tables<"P
                 postData: {
                     title: values.title,
                     content: values.content,
-                    image: imageForm
+                    image: imageForm,
+                    category: values.category
                 }, postId,
                 removeImage
             })
@@ -50,6 +54,15 @@ const EditPostForm = ({ initialValues, postId }: { initialValues: Pick<Tables<"P
 
             <label className="form-label">Edit content</label>
             <input className="form-input" {...register("content")}></input>
+
+            <label className="form-label">Edit category</label>
+
+            <select className="form-input" {...register("category")}>
+                <option value="" disabled>Choose category</option>
+                <option value="movies">Movies</option>
+                <option value="series">TV Series</option>
+            </select>
+            {errors.category && <ErrorMessage error={errors.category.message!} />}
 
             <label className="form-label">Edit image</label>
             {initialValues.image && !removeImage && (

@@ -149,6 +149,10 @@
     @apply text-sm text-neon-purple text-right mt-8;
   }
 
+  .community-card-category {
+    @apply inline-block text-xs font-semibold text-neon-purple bg-neon-purple/10 border border-neon-purple/30 rounded-md m-4 px-3 py-1;
+  }
+
   /* Single Community Post */
 
   .single-post-container {
@@ -167,12 +171,70 @@
     @apply text-text-primary text-lg leading-8 whitespace-pre-line;
   }
 
+  .single-post-info {
+    @apply flex items-center justify-between w-full mt-10;
+  }
+
   .single-post-author {
-    @apply text-lg text-neon-purple text-right mt-10;
+    @apply text-lg text-neon-purple text-right;
+  }
+
+  .single-post-category {
+    @apply text-xs font-semibold text-neon-purple bg-neon-purple/10 border border-neon-purple/30 rounded-md px-3 py-1;
   }
 
   .single-post-image {
     @apply block w-full max-w-md max-h-80 mx-auto my-6 object-contain;
+  }
+
+  /* SEARCH POSTS */
+
+  .search-container {
+    @apply w-full max-w-3xl mx-auto mb-8;
+  }
+
+  .search-form {
+    @apply flex gap-3 mt-4;
+  }
+
+  .search-input {
+    @apply flex-1 min-w-0 bg-surface border border-neon-purple/30 rounded-lg px-4 py-3 text-text-primary outline-none transition-all duration-300;
+  }
+
+  .search-input:focus {
+    @apply border-neon-purple shadow-md shadow-neon-purple/20;
+  }
+
+  .search-input::placeholder {
+    @apply text-text-secondary;
+  }
+
+  .search-button {
+    @apply px-6 py-3 bg-neon-purple text-white font-semibold rounded-lg cursor-pointer transition-all duration-300;
+  }
+
+  .search-button:hover {
+    @apply shadow-lg shadow-neon-purple/40;
+  }
+
+  .search-results {
+    @apply flex flex-col gap-2 mt-4 bg-surface border border-neon-purple/30 rounded-lg p-3;
+  }
+
+  .search-result {
+    @apply block px-4 py-3 text-text-primary rounded-md transition-all duration-300;
+  }
+
+  .search-result:hover {
+    @apply bg-surface-light text-neon-purple;
+  }
+
+  .search-empty {
+    @apply text-text-secondary text-center py-3;
+  }
+
+  .search-error {
+    @apply text-red-500 text-sm mt-3;
   }
 
   /* FORMS: Log in / Sign up / Create post / Edit post */
@@ -333,5 +395,27 @@
 
   .delete-comment-button:hover {
     @apply shadow-md shadow-neon-delete-red/30;
+  }
+
+  /* Filter Category Posts buttons */
+
+  .category-container {
+    @apply flex flex-col items-center gap-4 my-8;
+  }
+
+  .category-title {
+    @apply text-xl font-semibold text-text-primary;
+  }
+
+  .category-buttons {
+    @apply flex justify-center flex-wrap gap-3;
+  }
+
+  .category-button {
+    @apply px-6 py-2 rounded-lg border border-neon-purple/40 text-text-primary bg-surface transition-all duration-300;
+  }
+
+  .category-button:hover {
+    @apply border-neon-purple text-neon-purple shadow-md shadow-neon-purple/30;
   }
 }

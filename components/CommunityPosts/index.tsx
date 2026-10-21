@@ -14,6 +14,10 @@ const CommunityPosts = ({ posts }: { posts: CommunityPostType }) => {
                         {post.title}
                     </h3>
 
+                    <p className="community-card-category">
+                        {post.category === "movies" ? "Movies" : "TV Series"}
+                    </p>
+
                     <p className="community-card-author">
                         {post.author.username}
                     </p>

@@ -14,7 +14,8 @@ export const logInSchema = z.object({
 export const postSchema = z.object({
     title: z.string().min(6, "Your title must be at least 6 characters long"),
     content: z.string().optional(),
-    image: z.instanceof(FormData).optional()
+    image: z.instanceof(FormData).optional(),
+    category: z.enum(["movies", "series"], { error: "Please choose a category" })
 })
 
 export const commentSchema = z.object({
