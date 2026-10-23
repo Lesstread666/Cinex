@@ -5,7 +5,7 @@ export const getCommunityPosts = async (supabase: ReturnType<typeof createClient
 
     return await supabase
         .from('Posts')
-        .select('id, title, slug, category, image, author("id","username")')
+        .select('id, title, slug, category, images, author("id","username")')
         .order('created_at', { ascending: false })
 }
 
@@ -13,7 +13,7 @@ export const getSingleCommunityPost = async (slug: string) => {
     const supabase = createClient()
     return await supabase
         .from('Posts')
-        .select('id, title, content, image, category, author("id","username")')
+        .select('id, title, content, images, category, author("id","username")')
         .eq('slug', slug)
         .single()
 }
@@ -42,7 +42,7 @@ export const getPostsByCategories = async (supabase: ReturnType<typeof createCli
 
     return await supabase
         .from("Posts")
-        .select('id, title, slug, image, category, author("id","username")')
+        .select('id, title, slug, images, category, author("id","username")')
         .eq("category", category)
         .order('created_at', { ascending: false })
 }

@@ -12,9 +12,9 @@ const EditPostPage = async ({ params }: { params: { slug: string } }) => {
     const { data: { user } } = await supabase.auth.getUser()
 
     const { data, error } = await getSingleCommunityPost(slug)
-    if (user && data && user.id !== data.author.id)
-
+    if (!user || (data && user.id !== data.author.id)) {
         redirect("/")
+    }
 
     return (
         <div className="form-page">
@@ -22,7 +22,7 @@ const EditPostPage = async ({ params }: { params: { slug: string } }) => {
 
                 <div className="form-container">
                     <h1 className="form-title">Edit: {data.title}</h1>
-                    <EditPageForm initialValues={{ title: data.title, content: data.content, image: data.image, category: data.category }} postId={data.id} />
+                    <EditPageForm initialValues={{ title: data.title, content: data.content, images: data.images, category: data.category }} postId={data.id} />
                 </div>
             }
         </div>

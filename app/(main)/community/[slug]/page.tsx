@@ -25,9 +25,9 @@ const CommunityPostPage = async ({ params }: { params: { slug: string } }) => {
                         {data.title}
                     </h1>
 
-                    {data.image && (
-                        <img className="single-post-image" src={data.image} alt={data.title} />
-                    )}
+                    {data.images?.map((image) => (
+                        <img className="single-post-image" key={image} src={image} alt={data.title} />
+                    ))}
 
                     {data.content && (
                         <p className="single-post-text">

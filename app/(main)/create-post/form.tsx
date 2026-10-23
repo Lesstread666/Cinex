@@ -4,13 +4,14 @@ import { postSchema } from "@/actions/schemas"
 import ErrorMessage from "@/components/ErrorMessage"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
-import z from "zod"
 
 const CreatePostForm = () => {
 
-    const postImageSchema = postSchema.omit({ image: true })
-        .extend({ image: z.unknown().transform(value => { return value as FileList }).optional() })
+    const [selectedImages, setSelectedImages] = useState<File[]>([])
+
+    const postImageSchema = postSchema.omit({ images: true })
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(postImageSchema)
@@ -26,14 +27,15 @@ const CreatePostForm = () => {
             onSubmit={handleSubmit(values => {
 
                 const imageForm = new FormData()
-                if (values.image?.[0]) {
-                    imageForm.append("image", values.image[0])
+
+                for (const file of selectedImages) {
+                    imageForm.append("images", file)
                 }
 
                 mutate({
                     title: values.title,
                     content: values.content,
-                    image: imageForm,
+                    images: imageForm,
                     category: values.category
                 })
             })}>
@@ -55,9 +57,33 @@ const CreatePostForm = () => {
             </select>
             {errors.category && <ErrorMessage error={errors.category.message!} />}
 
-            <label className="form-label" htmlFor="image">Add an Image (optional)</label>
-            <input className="form-input" type="file" {...register("image")} />
-            {errors.image && <ErrorMessage error={errors.image.message!} />}
+            <label className="form-label" htmlFor="images">Add Images (optional)</label>
+            <input
+                className="form-input"
+                id="images"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => {
+                    if (e.target.files) {
+                        setSelectedImages([
+                            ...selectedImages,
+                            ...Array.from(e.target.files)
+                        ])
+                    }
+                    e.target.value = ""
+                }}
+            />
+
+            {selectedImages.map((image, index) => (
+                <div key={index}>
+                    <p>{image.name}</p>
+
+                    <button type="button" onClick={() => setSelectedImages(selectedImages.filter(file => file !== image))}>
+                        Remove
+                    </button>
+                </div>
+            ))}
 
             <button className="form-button">Create a post</button>
             {error && <ErrorMessage error={error.message} />}

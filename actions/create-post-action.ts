@@ -19,21 +19,26 @@ export const CreatePostAction = async (postdata: z.infer<typeof postSchema>) => 
 
     const slug = slugify(parseData.title)
 
-    const imageFile = postdata.image?.get('image')
+    const imageFiles = postdata.images?.getAll('images') || []
 
-    if (imageFile != null && !(imageFile instanceof File)) {
-        throw new Error("Invalid image format")
+    const imageUrls: string[] = []
+
+    for (const file of imageFiles) {
+
+        if (!(file instanceof File)) {
+            throw new Error("Invalid image format")
+        }
+
+        const imageUrl = await uploadImage(file)
+
+        imageUrls.push(imageUrl)
     }
-
-    const imageUrl = imageFile instanceof File
-        ? await uploadImage(imageFile)
-        : null
 
     const { data, error } = await supabase.from("Posts").insert({
         ...parseData,
         slug: slug,
         author: user.id,
-        image: imageUrl
+        images: imageUrls
     })
     if (error) throw error
 

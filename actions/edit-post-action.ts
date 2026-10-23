@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { uploadImage } from "../lib/supabase/upload-image"
 
-export const EditPostAction = async ({ postData, postId, removeImage }: { postData: z.infer<typeof postSchema>, postId: string, removeImage: boolean }) => {
+export const EditPostAction = async ({ postData, postId, remainingImages }: { postData: z.infer<typeof postSchema>, postId: string, remainingImages: string[] }) => {
 
     const parseData = postSchema.parse(postData)
     const supabase = await createClient()
@@ -21,21 +21,35 @@ export const EditPostAction = async ({ postData, postId, removeImage }: { postDa
 
     if (!post) throw new Error("Post doesn't exist!")
 
-    const imageFile = parseData.image?.get("image")
+    const { data: { user } } = await supabase.auth.getUser()
 
-    if (imageFile != null && !(imageFile instanceof File)) {
-        throw new Error("Invalid image format")
+    if (!user || post.author !== user.id) {
+        throw new Error("Unauthorized access!")
     }
 
-    const imageUrl = removeImage
-        ? null
-        : imageFile instanceof File
-            ? await uploadImage(imageFile)
-            : post.image
+    const imageFiles = parseData.images?.getAll("images") || []
+
+    const imageUrls: string[] = []
+
+    for (const file of imageFiles) {
+        if (!(file instanceof File)) {
+            throw new Error("Invalid image format")
+        }
+
+        const imageUrl = await uploadImage(file)
+        imageUrls.push(imageUrl)
+    }
 
     const { data: updatePost } = await supabase
         .from("Posts")
-        .update({ ...parseData, slug: slugify(parseData.title), image: imageUrl })
+        .update({
+            ...parseData,
+            slug: slugify(parseData.title),
+            images: [
+                ...remainingImages.filter(image => post.images.includes(image)),
+                ...imageUrls
+            ]
+        })
         .select()
         .eq("id", postId)
         .single()
