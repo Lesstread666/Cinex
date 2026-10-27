@@ -419,3 +419,278 @@
     @apply border-neon-purple text-neon-purple shadow-md shadow-neon-purple/30;
   }
 }
+
+/* Responsive layout: tablets and smaller screens */
+@media (max-width: 1023px) {
+  .header {
+    @apply px-5 py-4 gap-4 flex-wrap;
+  }
+
+  .header-subtitle {
+    @apply text-lg;
+  }
+
+  .navigation {
+    @apply px-4 py-3 gap-6 flex-wrap;
+  }
+
+  .nav-link {
+    @apply text-lg;
+  }
+
+  .details-container {
+    @apply mx-4 my-6 p-0;
+  }
+
+  .details-card {
+    @apply w-full gap-5 p-5;
+  }
+
+  .details-image {
+    @apply w-56 shrink-0;
+  }
+
+  .details-content {
+    @apply min-w-0 p-3;
+  }
+
+  .media-container {
+    @apply px-5 py-6 gap-4;
+  }
+
+  .community-container {
+    @apply px-5 py-6;
+  }
+}
+
+/* Responsive layout: mobile phones */
+@media (max-width: 639px) {
+  body {
+    @apply overflow-x-hidden;
+  }
+
+  /* Header and navigation */
+  .header {
+    @apply flex-col items-center text-center px-4 py-4 gap-3;
+  }
+
+  .header-title {
+    @apply text-2xl;
+    letter-spacing: 0.06em;
+  }
+
+  .header-subtitle {
+    @apply text-sm mt-1;
+  }
+
+  .auth-container {
+    @apply flex-wrap justify-center gap-2 w-full;
+  }
+
+  .auth-link {
+    @apply px-3 py-2 text-sm;
+  }
+
+  .navigation {
+    @apply px-3 py-3 gap-x-4 gap-y-3 justify-center;
+  }
+
+  .nav-link {
+    @apply text-base;
+  }
+
+  /* Movies and series */
+  .media-container {
+    @apply grid-cols-2 gap-3 px-3 py-5;
+  }
+
+  .media-card-content {
+    @apply p-3;
+  }
+
+  .media-card-title {
+    @apply text-sm;
+  }
+
+  .media-card-info {
+    @apply text-xs;
+  }
+
+  .details-container {
+    @apply mx-3 my-5 p-0;
+  }
+
+  .details-card {
+    @apply flex-col items-center p-4 gap-4;
+  }
+
+  .details-image {
+    @apply w-full max-w-56 h-auto;
+  }
+
+  .details-content {
+    @apply w-full p-3;
+  }
+
+  .details-title {
+    @apply text-xl;
+  }
+
+  .details-overview {
+    @apply text-sm leading-6;
+  }
+
+  /* Community lists and individual posts */
+  .community-container {
+    @apply grid-cols-1 px-3 py-5 gap-4;
+  }
+
+  .community-card {
+    @apply min-h-32 px-4 py-4;
+  }
+
+  .community-card-title {
+    @apply text-lg wrap-break-word;
+  }
+
+  .community-card-author {
+    @apply mt-4;
+  }
+
+  .community-card-category {
+    @apply m-2;
+  }
+
+  .single-post-container {
+    @apply px-3 py-5;
+  }
+
+  .single-post {
+    @apply min-h-0 p-4;
+  }
+
+  .single-post-title {
+    @apply text-xl mb-5 wrap-break-word;
+  }
+
+  .single-post-text {
+    @apply text-base leading-7 wrap-break-word;
+  }
+
+  .single-post-info {
+    @apply flex-wrap gap-3 mt-6;
+  }
+
+  .single-post-author {
+    @apply text-sm;
+  }
+
+  .single-post-image {
+    @apply max-w-full h-auto my-4;
+  }
+
+  .post-actions {
+    @apply gap-3 mt-5;
+  }
+
+  .delete-button,
+  .edit-button {
+    @apply text-sm px-3 py-2;
+  }
+
+  /* Search and category filters */
+  .search-container {
+    @apply px-3 mb-5;
+  }
+
+  .search-form {
+    @apply flex-col gap-2;
+  }
+
+  .search-input {
+    @apply w-full;
+  }
+
+  .search-button {
+    @apply w-full;
+  }
+
+  .category-container {
+    @apply px-3 my-5;
+  }
+
+  .category-title {
+    @apply text-lg text-center;
+  }
+
+  .category-buttons {
+    @apply gap-2;
+  }
+
+  .category-button {
+    @apply px-3 py-2 text-sm;
+  }
+
+  /* Login, signup, create/edit posts */
+  .form-page {
+    @apply px-3 py-6;
+  }
+
+  .form-container {
+    @apply p-4;
+  }
+
+  .form-title {
+    @apply text-2xl mb-5;
+  }
+
+  .form-input,
+  .form-textarea {
+    @apply min-w-0;
+    font-size: 16px;
+  }
+
+  .form-input[type="file"] {
+    @apply text-sm px-2;
+  }
+
+  .edit-post-image {
+    @apply max-w-full;
+  }
+
+  /* Comments and replies */
+  .comments-container {
+    @apply mt-6 gap-3 min-w-0;
+  }
+
+  .comments-title {
+    @apply text-xl mb-2;
+  }
+
+  .comment-card {
+    @apply min-w-0 p-3;
+  }
+
+  .comment-content {
+    @apply wrap-break-word;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 359px) {
+  .media-container {
+    @apply grid-cols-1;
+  }
+
+  .header-title {
+    @apply text-xl;
+  }
+
+  .navigation {
+    @apply gap-3;
+  }
+
+  .nav-link {
+    @apply text-sm;
+  }
+}
