@@ -8,7 +8,7 @@ const LogInPage = () => {
                 <h1 className="form-title">Log in Page</h1>
                 <LogInForm />
                 <p className="form-footer"> Don't have any account?</p>
-                <Link className="form-link" href="/signup">
+                <Link className="form-link" href="/auth/signup">
                     Sign up here
                 </Link>
             </div>
