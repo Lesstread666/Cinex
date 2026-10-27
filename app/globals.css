@@ -30,7 +30,7 @@
   }
 
   .header-title {
-    @apply text-3xl font-bold text-neon-purple;
+    @apply text-3xl font-bold text-neon-purple cursor-pointer;
     font-family: var(--font-orbitron);
     letter-spacing: 0.12em;
     text-shadow:

@@ -10,12 +10,13 @@ const Header = async () => {
     return (
         <header className="header">
             <div>
-                <h1 className="header-title">Cinex</h1>
+                <Link href="/" className="header-title">
+                    Cinex
+                </Link>
                 <p className="header-subtitle">
                     Discover movies. Share your thoughts.
                 </p>
             </div>
-
             {user ?
                 <div className="auth-container">
                     <form action={Logout}>
